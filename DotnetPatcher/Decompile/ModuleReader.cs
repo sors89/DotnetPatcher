@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ICSharpCode.Decompiler.Metadata;
 using System.Reflection;
 using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
-using ICSharpCode.Decompiler.Metadata;
 
 namespace DotnetPatcher
 {

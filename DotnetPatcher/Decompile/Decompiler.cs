@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Metadata;
-using System.Reflection.PortableExecutable;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Xml;
+﻿using DotnetPatcher.Utility;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.CSharp;
 using ICSharpCode.Decompiler.CSharp.OutputVisitor;
-using ICSharpCode.Decompiler.CSharp.ProjectDecompiler;
-using ICSharpCode.Decompiler.CSharp.Transforms;
 using ICSharpCode.Decompiler.Metadata;
-using ICSharpCode.Decompiler.TypeSystem;
-using DotnetPatcher.Utility;
 
 namespace DotnetPatcher.Decompile
 {
@@ -65,7 +51,7 @@ namespace DotnetPatcher.Decompile
 
 			PEFile mainModule = ModuleReader.ReadModule(TargetFile, true);
 
-			projectDecompiler = new DecompilerUtility.ExtendedProjectDecompiler(new EmbeddedAssemblyResolver(mainModule, mainModule.Reader.DetectTargetFrameworkId(), SourceOutputDirectory));
+			projectDecompiler = new DecompilerUtility.ExtendedProjectDecompiler(new EmbeddedAssemblyResolver(mainModule, mainModule.DetectTargetFrameworkId(), SourceOutputDirectory));
 			projectDecompiler.Settings.CSharpFormattingOptions = FormattingOptionsFactory.CreateKRStyle();
 
 			List<WorkTask> items = new List<WorkTask>();

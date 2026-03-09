@@ -1,22 +1,7 @@
-﻿using System.Reflection.Metadata;
-using System.Reflection.PortableExecutable;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Xml;
-using ICSharpCode.Decompiler;
-using ICSharpCode.Decompiler.CSharp;
-using ICSharpCode.Decompiler.CSharp.OutputVisitor;
-using ICSharpCode.Decompiler.CSharp.ProjectDecompiler;
-using ICSharpCode.Decompiler.CSharp.Transforms;
-using ICSharpCode.Decompiler.Metadata;
-using ICSharpCode.Decompiler.TypeSystem;
+﻿using CodeChicken.DiffPatch;
 using DotnetPatcher.Utility;
-using CodeChicken.DiffPatch;
-using System.Collections.Concurrent;
-
-using DiffPatcher = CodeChicken.DiffPatch.Patcher;
-using DiffDiffer = CodeChicken.DiffPatch.Differ;
 using System.Text.RegularExpressions;
+using DiffDiffer = CodeChicken.DiffPatch.Differ;
 
 namespace DotnetPatcher.Diff
 {
