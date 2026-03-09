@@ -37,7 +37,7 @@ namespace DotnetPatcher.Patch
 			string removedFileList = Path.Combine(PatchPath, RemovedFileList);
 			HashSet<string> noCopy = File.Exists(removedFileList) ? new HashSet<string>(File.ReadAllLines(removedFileList)) : new HashSet<string>();
 
-			HashSet<string> newFiles = new HashSet<string>();
+			ConcurrentBag<string> newFiles = new ConcurrentBag<string>();
 
 			List<WorkTask> patchTasks = new List<WorkTask>();
 			List<WorkTask> patchCopyTasks = new List<WorkTask>();
@@ -53,7 +53,7 @@ namespace DotnetPatcher.Patch
 
                         if (filePatcher is not null)
                         {
-                            string patchedPathReal = Path.GetFullPath(DirectoryUtility.PreparePath(filePatcher.PatchedPath));
+                            string patchedPathReal = Path.GetFullPath(filePatcher.PatchedPath).Replace('\\', '/');
 
                             newFiles.Add(patchedPathReal);
                         }
@@ -62,7 +62,7 @@ namespace DotnetPatcher.Patch
 				}
 				else if (relPath != RemovedFileList)
 				{
-					string destination = Path.GetFullPath(Path.Combine(PatchedPath, relPath));
+					string destination = Path.GetFullPath(Path.Combine(PatchedPath, relPath)).Replace('\\', '/');
 
 					patchCopyTasks.Add(new WorkTask(() =>
 					{
@@ -75,7 +75,7 @@ namespace DotnetPatcher.Patch
 			{
 				if (!noCopy.Contains(relPath))
 				{
-					string destination = Path.GetFullPath(Path.Combine(PatchedPath, relPath));
+					string destination = Path.GetFullPath(Path.Combine(PatchedPath, relPath)).Replace('\\', '/');
 
                     if (destination.Contains(".git")) continue;
 
@@ -93,7 +93,7 @@ namespace DotnetPatcher.Patch
 
 
 			foreach ((string file, string relPath) in DirectoryUtility.EnumerateSrcFiles(PatchedPath))
-				if (!newFiles.Contains(Path.GetFullPath(file)))
+				if (!newFiles.Contains(Path.GetFullPath(file).Replace('\\', '/')))
 					File.Delete(file);
 
 			DirectoryUtility.DeleteEmptyDirs(PatchedPath);

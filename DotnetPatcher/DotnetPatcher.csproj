@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -8,11 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CodeChicken.DiffPatch" Version="1.1.0" />
     <PackageReference Include="ICSharpCode.Decompiler" Version="9.1.0.7988" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DiffPatch\DiffPatch.csproj" />
   </ItemGroup>
 
 </Project>

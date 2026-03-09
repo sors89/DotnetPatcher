@@ -64,7 +64,7 @@ namespace DotnetPatcher.Diff
 			string removedFileList = Path.Combine(PatchPath, RemovedFileList);
 			if (removedFiles.Length > 0)
 			{
-				File.WriteAllLines(removedFileList, removedFiles);
+				File.WriteAllLines(removedFileList, removedFiles.Order());
 			}
 			else
 			{
